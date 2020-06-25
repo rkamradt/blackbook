@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { withAuth } from '@okta/okta-react';
+import { useAuth } from './auth';
 
-function App() {
+const App = withAuth(({ auth }) => {
+  const [authenticated, user] = useAuth(auth);
   return (
     <div className="App">
       <header className="App-header">
@@ -10,6 +13,14 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        {authenticated !== null && (
+          <button
+            onClick={() => authenticated ? auth.logout() : auth.login()}
+            className="App-link"
+          >
+            Log {authenticated ? 'out' : 'in'}
+          </button>
+        )}
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -21,6 +32,6 @@ function App() {
       </header>
     </div>
   );
-}
+});
 
 export default App;
