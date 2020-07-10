@@ -1,6 +1,10 @@
 version: '3'
 services:
-  app:
+  blackbook:
     build: .
     ports:
       - 3000:80
+  read-profile:
+    image: rlkamradt/blackbook-read-profile
+    ports:
+      - 3001:3000
