@@ -1,5 +1,6 @@
 export const fetchUser = async (accessToken) => {
   try {
+    console.log('fetching user data with at ' + accessToken)
     const apiUrl = process.env.REACT_APP_READ_PROFILE_URL
     return await fetch(apiUrl, {
       headers: {

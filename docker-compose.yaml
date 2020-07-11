@@ -1,7 +1,7 @@
 version: '3'
 services:
   blackbook:
-    build: .
+    image: rlkamradt/blackbook
     ports:
       - 3000:80
   read-profile:
