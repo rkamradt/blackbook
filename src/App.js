@@ -1,19 +1,22 @@
 import React from 'react';
 import './App.css';
-import { withAuth } from '@okta/okta-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useAuth } from './auth';
 
-const App = withAuth(({ auth }) => {
-  const [authenticated, user] = useAuth(auth);
+const App = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const [authenticated, user] = useAuth();
   return (
     <div className="App">
       <header className="App-header">
-        {authenticated !== null && (
+        {isAuthenticated !== undefined && (
           <button
-            onClick={() => authenticated ? auth.logout() : auth.login()}
+            onClick={() => isAuthenticated
+              ? logout({ logoutParams: { returnTo: window.location.origin } })
+              : loginWithRedirect()}
             className="App-link"
           >
-            Log {authenticated ? 'out' : 'in'}
+            Log {isAuthenticated ? 'out' : 'in'}
           </button>
         )}
         {user !== null && (
@@ -23,6 +26,6 @@ const App = withAuth(({ auth }) => {
       </header>
     </div>
   );
-});
+};
 
 export default App;

@@ -1,28 +1,21 @@
 import { useState, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUser } from './user.js'
 
-export const useAuth = (auth) => {
-  const [authenticated, setAuthenticated] = useState(null)
+export const useAuth = () => {
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    auth.isAuthenticated().then(isAuthenticated => {
-      if (isAuthenticated !== authenticated) {
-        setAuthenticated(isAuthenticated);
-      }
-    })
-  })
-
-  useEffect(() => {
-    if (authenticated) {
+    if (isAuthenticated) {
       setUser(null)
-      auth.getAccessToken()
+      getAccessTokenSilently()
         .then(fetchUser)
         .then(setUser)
     } else {
       setUser(null);
     }
-  }, [authenticated, auth])
+  }, [isAuthenticated, getAccessTokenSilently])
 
-  return [authenticated, user];
+  return [isAuthenticated, user];
 };

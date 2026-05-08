@@ -3,20 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Security, ImplicitCallback } from '@okta/okta-react';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.render(
-  <Router>
-    <Security
-      issuer={`${process.env.REACT_APP_OKTA_ORG_URL}/oauth2/default`}
-      client_id={process.env.REACT_APP_OKTA_CLIENT_ID}
-      redirect_uri={`${window.location.origin}/implicit/callback`}
-    >
-      <Route path="/" exact component={App} />
-      <Route path="/implicit/callback" component={ImplicitCallback} />
-    </Security>
-  </Router>,
+  <Auth0Provider
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+      audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+    }}
+  >
+    <App />
+  </Auth0Provider>,
   document.getElementById('root')
 );
 // If you want your app to work offline and load faster, you can change
