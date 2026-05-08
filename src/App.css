@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+  background: #f0f2f5;
+  color: #1c1e21;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.App-nav {
+  background: #1877f2;
   color: white;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.App-link {
-  color: #61dafb;
+.App-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-main {
+  max-width: 600px;
+  margin: 32px auto;
+  padding: 0 16px;
 }
+
+.App-welcome {
+  text-align: center;
+  padding: 48px 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.App-welcome h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.App-welcome p {
+  color: #65676b;
+  margin: 0 0 24px;
+  font-size: 16px;
+}
+
+.App-loading {
+  text-align: center;
+  color: #65676b;
+  margin-top: 48px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover { background: #166fe5; }
+.btn-primary:disabled { background: #9cb8e8; cursor: default; }
+
+.btn-secondary {
+  background: #e4e6eb;
+  color: #1c1e21;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-secondary:hover { background: #d8dadf; }
+
+.btn-nav {
+  background: white;
+  color: #1877f2;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-nav:hover { background: #e7f0ff; }
